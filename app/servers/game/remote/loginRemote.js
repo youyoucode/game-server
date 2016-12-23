@@ -10,6 +10,35 @@ var LoginRemote = function(app) {
 };
 
 LoginRemote.prototype.login = function(uid,callback) {
+	var loginData;
+	async.waterfall([
+		function(cb) {
+			userDao.getUserInfo(uid,function(err, info) {
+				cb(err,info);
+			});
+		},
+		function(info, cb) {
+			if(!info.userinfo){
+				userDao.createUser(uid,function(err, info) {
+					loginData = info;
+					cb(err);
+				});
+			}else{
+				loginData = info;
+				cb(err);
+			}
+		}
+	], function(err) {
+		if(err) {
+			console.log(err);
+			callback(null);
+			return;
+		}
+		callback(loginData);
+	});
+};
+
+LoginRemote.prototype.refresh = function(uid,callback) {
 	var userinfo;
 	async.waterfall([
 		function(cb) {

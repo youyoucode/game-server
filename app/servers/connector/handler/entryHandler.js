@@ -31,7 +31,30 @@ Handler.prototype.enter = function(msg, session, next) {
 	});
 	session.on('closed', onUserLeave.bind(null, this.app));
 	
-	this.app.rpc.game.loginRemote.login(session,uid, function(info){
+	this.app.rpc.game.loginRemote.login(session,uid, function(data){
+		if(!data){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			user: data.userinfo,
+			heros: data.heros,
+			equips:data.equips
+		})});
+};
+
+Handler.prototype.refresh = function(msg, session, next) {
+	var uid = msg.uid;
+	if(!uid) {
+		next(null, {
+			code: 500
+		});
+		return;
+	}
+	this.app.rpc.game.loginRemote.refresh(session,uid, function(info){
 		if(!info){
 			next(null, {
 				code: 500
@@ -40,7 +63,7 @@ Handler.prototype.enter = function(msg, session, next) {
 		}
 		next(null, {
 			code: 200,
-			user: info
+			updateInfo: info
 		})});
 };
 
