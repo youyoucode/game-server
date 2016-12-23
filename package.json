@@ -9,6 +9,7 @@
 	    , "pomelo": "1.2.3"
 	    , "express": "2.5.2"
   	  , "connect": ">=0.0.1"
+      , "node-csv":"latest"
     }
 }
 

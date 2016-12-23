@@ -1,6 +1,7 @@
 var pomelo = require('pomelo');
 var routeUtil = require('./app/util/routeUtil');
 var sync = require('pomelo-sync-plugin');
+var configUtil = require('./app/util/configUtil');
 
 /**
  * Init app for client.
@@ -10,6 +11,9 @@ app.set('name', 'MaliGame');
 
 // configure for global
 app.configure('production|development', function() {
+  //game configs
+  configUtil.loadData("pve_story_level");
+
   app.loadConfig('mysql',app.getBase() + '/config/mysql.json');
 
   app.route('game', routeUtil.game);
