@@ -1,4 +1,6 @@
 var userDao = require('../../../dao/userDao');
+var storyDao = require('../../../dao/storyDao');
+var heroDao = require('../../../dao/heroDao');
 var async = require('async');
 var configUtil = require('../../../util/configUtil');
 var gameUtil = require('../../../util/gameUtil');
@@ -12,7 +14,7 @@ var GameRemote = function(app) {
 };
 
 GameRemote.prototype.getStoryInfo = function(uid,callback) {
-	userDao.getStoryInfo(uid,function(err, story) {
+	storyDao.getStoryInfo(uid,function(err, story) {
 		callback(story);
 	});
 }
@@ -22,18 +24,17 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 	var userInfo;
 	async.waterfall([
 		function(cb) {
-			userDao.getUserInfo(uid,function(err, info) {
-				cb(err,info);
+			userDao.getUserInfo(uid,function(err, dat) {
+				cb(err,dat.userinfo);
 			});
 		},
 		function(info, cb) {
 			userInfo = info;
 			var storyCFG = configUtil.getConfig("pve_story_level",id);
-			console.log(storyCFG);
-			if(id>=info.storyID){
+			if(id-info.storyID>=0){
 				updateInfo.storyID = Number(storyCFG.next_level);
 			}
-			userDao.updateStoryInfo(uid,id,star,function(err,drop) {
+			storyDao.updateStoryInfo(uid,id,star,function(err,drop) {
 				if(drop){
 					var items = storyCFG['star'+star+"_reward"].split("|");
 					var numbers = storyCFG['star'+star+"_reward_num"].split("|");
@@ -46,10 +47,10 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 			});
 		},
 		function(cb) {
-			userDao.updateInfo(uid,updateInfo,function(err,info) {
-				if(info.addexp){
-					updateInfo.addexp = info.addexp;
-					updateInfo.exp = userInfo.exp + info.addexp;
+			userDao.updateInfo(uid,updateInfo,function(err,dat) {
+				if(!!dat.addexp){
+					updateInfo.addexp = dat.addexp;
+					updateInfo.exp = userInfo.exp + dat.addexp;
 					updateInfo.level = gameUtil.levelFromExp(updateInfo.exp);
 				}
 				cb(err);
@@ -57,7 +58,6 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 		}
 	], function(err) {
 		if(err) {
-			console.log(err);
 			callback(null);
 			return;
 		}
@@ -66,7 +66,7 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 };
 
 GameRemote.prototype.useItem = function(uid,hid,id,seat,callback) {
-	userDao.useItem(uid,hid,id,seat,function(err, ret) {
+	heroDao.useItem(uid,hid,id,seat,function(err, ret) {
 		callback(ret);
 	});
 }
