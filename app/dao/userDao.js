@@ -1,7 +1,11 @@
+var logger = require('pomelo-logger').getLogger(__filename);
 var pomelo = require('pomelo');
 var utils = require('../util/utils');
 var async = require('async');
 var gameUtil = require('../util/gameUtil');
+
+var heroDao = require('./heroDao');
+var itemDao = require('./itemDao');
 
 var userDao = module.exports;
 
@@ -21,18 +25,16 @@ userDao.getUserInfo = function (uid, cb) {
 			});
 		},
 		function(callback){
-			sql = 'select * from user_hero_' + uid%10 +' where uid = ?';
-			args = [uid];
-			connection.query(sql,args,function(err, res) {
-				data.heros = res;
+			heroDao.getHeroList(uid, function(err, heros) {
+				if(!!err) logger.error('Get heros for heroDao failed! ' + err.stack);
+				data.heros = heros;
 				callback(err);
 			});
 		},
 		function(callback){
-			sql = 'select * from user_item_' + uid%10 +' where uid = ?';
-			args = [uid];
-			connection.query(sql,args,function(err, res) {
-				data.equips = res;
+			itemDao.getItemList(uid, function(err, items) {
+				if(!!err) logger.error('Get items for itemDao failed! ' + err.stack);
+				data.equips = items;
 				callback(err);
 			});
 		}
@@ -47,10 +49,8 @@ userDao.createUser = function (uid, cb) {
 	var data = {},sql,args,heroid;
 	async.series([
 			function(callback){
-				sql = 'insert into user_hero_' + uid%10 +' (uid, mid) values(?,?)';
-				args = [uid,30000];
-				connection.query(sql,args,function(err, res) {
-					heroid = res.insertId;
+				heroDao.createHero(uid,30000,function(err, id) {
+					heroid = id;
 					callback(err);
 				});
 			},
@@ -62,9 +62,7 @@ userDao.createUser = function (uid, cb) {
 				});
 			},
 			function(callback){
-				sql = 'insert into user_item_' + uid%10 +' (uid, mid, updateTime) values(?,?,?)';
-				args = [uid,10009,time];
-				connection.query(sql,args,function(err, res) {
+				itemDao.createItem(uid,10009,function(err, id) {
 					callback(err);
 				});
 			},
@@ -80,18 +78,16 @@ userDao.createUser = function (uid, cb) {
 				});
 			},
 			function(callback){
-				sql = 'select * from user_hero_' + uid%10 +' where uid = ?';
-				args = [uid];
-				connection.query(sql,args,function(err, res) {
-					data.heros = res;
+				heroDao.getHeroList(uid, function(err, heros) {
+					if(!!err) logger.error('Get heros for heroDao failed! ' + err.stack);
+					data.heros = heros;
 					callback(err);
 				});
 			},
 			function(callback){
-				sql = 'select * from user_item_' + uid%10 +' where uid = ?';
-				args = [uid];
-				connection.query(sql,args,function(err, res) {
-					data.equips = res;
+				itemDao.getItemList(uid, function(err, items) {
+					if(!!err) logger.error('Get items for itemDao failed! ' + err.stack);
+					data.equips = items;
 					callback(err);
 				});
 			}
