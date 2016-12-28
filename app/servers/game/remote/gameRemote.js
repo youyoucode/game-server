@@ -48,20 +48,15 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 		},
 		function(cb) {
 			userDao.updateInfo(uid,updateInfo,function(err,dat) {
-				if(!!dat.addexp){
-					updateInfo.addexp = dat.addexp;
-					updateInfo.exp = userInfo.exp + dat.addexp;
-					updateInfo.level = gameUtil.levelFromExp(updateInfo.exp);
-				}
-				cb(err);
+				cb(dat,err);
 			});
 		}
-	], function(err) {
+	], function(dat,err) {
 		if(err) {
 			callback(null);
 			return;
 		}
-		callback({"id":id,"star":star,"updateInfo":updateInfo});
+		callback({"id":id,"star":star,"updateInfo":dat});
 	});
 };
 

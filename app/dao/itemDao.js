@@ -18,7 +18,7 @@ itemDao.getItemList = function(uid,cb){
 	var sql = 'select * from user_item_' + uid%10 +' where uid = ?';
 	var args = [uid];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-		if (!!res) utils.invokeCallback(cb, err, []);
+		if (err) utils.invokeCallback(cb, err, []);
 		else utils.invokeCallback(cb, err, res);
 	});
 

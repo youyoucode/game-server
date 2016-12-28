@@ -21,16 +21,27 @@ var handler = Handler.prototype;
  */
 handler.queryEntry = function(msg, session, next) {
 	var self = this;
-	var uid, host, port;
+	var name, uid, host, port;
 	async.waterfall([
 		function(cb) {
-			accountDao.getAccountInfo(msg.name,function(err, player) {
+			if(!msg.name){
+				accountDao.getRandomID(function(err, ret) {
+					name = ret+"";
+					cb(err);
+				});
+			}else{
+				name = msg.name;
+				cb(null);
+			}
+		},
+		function(cb) {
+			accountDao.getAccountInfo(name,function(err, player) {
 				cb(err,player);
 			});
 		},
 		function(player, cb) {
 			if(!player){
-				accountDao.createAccount(msg.name,function(err, player) {
+				accountDao.createAccount(name,function(err, player) {
 					cb(err,player.id);
 				});
 			}else cb(err,player.id)
@@ -55,6 +66,6 @@ handler.queryEntry = function(msg, session, next) {
 			next(err, {code: 500});
 			return;
 		}
-		next(null, {code: 200, uid: uid, host: host, port: port});
+		next(null, {code: 200, username:name, uid: uid, host: host, port: port});
 	});
 };

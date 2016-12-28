@@ -35,3 +35,15 @@ accountDao.createAccount = function (account, cb) {
 		}
 	});
 };
+
+accountDao.getRandomID = function (cb) {
+	var sql = 'select count(*) from system_user_info';
+	var args = [];
+	pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
+		if(err){
+			utils.invokeCallback(cb, err, 0);
+		}else{
+			utils.invokeCallback(cb, err, res['count(*)']);
+		}
+	});
+};
