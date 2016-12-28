@@ -61,6 +61,8 @@ handler.useItem = function(msg, session, next) {
 		}
 		next(null, {
 			code: 200,
+			id:msg.id,
+			seat:msg.seat,
 			ret: ret
 		})});
 };
