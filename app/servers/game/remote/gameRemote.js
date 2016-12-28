@@ -32,7 +32,7 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 			userInfo = info;
 			var storyCFG = configUtil.getConfig("pve_story_level",id);
 			if(id-info.storyID>=0){
-				updateInfo.storyID = Number(storyCFG.next_level);
+				updateInfo.storyID = Number(storyCFG.unlock_level);
 			}
 			storyDao.updateStoryInfo(uid,id,star,function(err,drop) {
 				if(drop){

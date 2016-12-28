@@ -52,9 +52,10 @@ handler.playStory = function(msg, session, next) {
 handler.useItem = function(msg, session, next) {
 	var uid = session.get('uid');
 	this.app.rpc.game.gameRemote.useItem(session,uid,msg.hid,msg.id,msg.seat,function(ret){
-		if(!item){
+		if(!ret){
 			next(null, {
-				code: 500
+				code: 500,
+				ret: ret
 			});
 			return;
 		}

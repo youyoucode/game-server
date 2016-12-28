@@ -5,7 +5,7 @@ var utils = require('../util/utils');
 var heroDao = module.exports;
 
 heroDao.createHeroWithItem = function(uid,mid,itemid,cb){
-	var sql = 'insert into user_hero_' + uid%10 +' (uid, mid,item4) values(?,?,?)';
+	var sql = 'insert into user_hero_' + uid%10 +' (uid, mid,item5) values(?,?,?)';
 	var args = [uid,mid,itemid];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) {
@@ -37,10 +37,11 @@ heroDao.getHeroList = function(uid,cb){
 }
 
 heroDao.useItem = function(uid,hid,id,seat,cb){
+	//todo limit lock
 	var sql = 'update user_hero_' + uid%10 +' set item'+seat+' = ? where id = ?';
 	var args = [id,hid];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-		if (err) utils.invokeCallback(cb, err, true);
-		else utils.invokeCallback(cb, err, false);
+		if (err) utils.invokeCallback(cb, err, false);
+		else utils.invokeCallback(cb, err, true);
 	});
 }
