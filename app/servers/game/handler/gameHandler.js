@@ -51,18 +51,18 @@ handler.playStory = function(msg, session, next) {
 
 handler.useItem = function(msg, session, next) {
 	var uid = session.get('uid');
+	var seat = msg.seat;
 	this.app.rpc.game.gameRemote.useItem(session,uid,msg.hid,msg.id,msg.seat,function(ret){
-		if(!ret){
+		if(ret<1){
 			next(null, {
-				code: 500,
-				ret: ret
+				code: 500
 			});
 			return;
 		}
+		else if(seat==0) seat = ret;
 		next(null, {
 			code: 200,
 			id:msg.id,
-			seat:msg.seat,
-			ret: ret
+			seat:seat,
 		})});
 };
