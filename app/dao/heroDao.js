@@ -37,11 +37,38 @@ heroDao.getHeroList = function(uid,cb){
 }
 
 heroDao.useItem = function(uid,hid,id,seat,cb){
-	//todo limit lock
-	var sql = 'update user_hero_' + uid%10 +' set item'+seat+' = ? where id = ?';
-	var args = [id,hid];
-	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-		if (err) utils.invokeCallback(cb, err, false);
-		else utils.invokeCallback(cb, err, true);
-	});
+	if(seat>0)
+	{
+		var sql = 'update user_hero_' + uid%10 +' set item'+seat+' = ? where id = ?';
+		var args = [id,hid];
+		pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+			if (err) utils.invokeCallback(cb, err, false);
+			else utils.invokeCallback(cb, err, true);
+		});
+	}
+	else
+	{
+		var sql = 'select * from user_hero_'+uid%10+' where id = ?';
+		var args = [uid,hid];
+		pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
+			if(err){
+				utils.invokeCallback(cb, err, false);
+			}else{
+				for(var i=1;i<9;i++)
+				{
+					if(res['item'+i]-id==0)
+					{
+						seat = i;
+						break;
+					}
+				}
+				sql = 'update user_hero_' + uid%10 +' set item'+seat+' = 0 where id = ?';
+				args = [hid];
+				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+					if (err) utils.invokeCallback(cb, err, false);
+					else utils.invokeCallback(cb, err, true);
+				});
+			}
+		});
+	}
 }
