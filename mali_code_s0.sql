@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.4.15.7
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 2016-12-23 04:47:07
--- 服务器版本： 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: 2016-12-28 13:43:41
+-- 服务器版本： 5.6.31-log
+-- PHP Version: 5.4.45
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `mali_code_s0`
@@ -27,27 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `system_user_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `account` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT ' ',
-  `createTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- 转存表中的数据 `system_user_info`
---
-
-INSERT INTO `system_user_info` (`id`, `account`, `password`, `name`, `createTime`) VALUES
-(1, '0.138428088524311431', '', ' ', 1482395418),
-(2, '0.81821089206228391', '', ' ', 1482395493),
-(3, '0.257862343484701161', '', ' ', 1482395536),
-(4, '0.22785717060774371', '', ' ', 1482396666),
-(5, '0.101815235991531421', '', ' ', 1482398787),
-(6, '0.36406450911486421', '', ' ', 1482401271),
-(7, '0.57678799948015241', '', ' ', 1482401976),
-(8, '0.7003787753562231', '', ' ', 1482402276);
+  `createTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -56,7 +41,7 @@ INSERT INTO `system_user_info` (`id`, `account`, `password`, `name`, `createTime
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_0` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -67,10 +52,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_0` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -79,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `user_hero_0` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_1` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -90,17 +73,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_1` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_1`
---
-
-INSERT INTO `user_hero_1` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 1, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -109,7 +83,7 @@ INSERT INTO `user_hero_1` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_2` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -120,17 +94,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_2` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_2`
---
-
-INSERT INTO `user_hero_2` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 2, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -139,7 +104,7 @@ INSERT INTO `user_hero_2` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_3` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -150,17 +115,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_3` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_3`
---
-
-INSERT INTO `user_hero_3` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 3, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -169,7 +125,7 @@ INSERT INTO `user_hero_3` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_4` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -180,17 +136,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_4` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_4`
---
-
-INSERT INTO `user_hero_4` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 4, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -199,7 +146,7 @@ INSERT INTO `user_hero_4` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_5` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -210,17 +157,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_5` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_5`
---
-
-INSERT INTO `user_hero_5` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 5, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -229,7 +167,7 @@ INSERT INTO `user_hero_5` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_6` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -240,17 +178,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_6` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_6`
---
-
-INSERT INTO `user_hero_6` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 6, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -259,7 +188,7 @@ INSERT INTO `user_hero_6` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_7` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -270,17 +199,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_7` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_7`
---
-
-INSERT INTO `user_hero_7` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 7, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -289,7 +209,7 @@ INSERT INTO `user_hero_7` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_8` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -300,17 +220,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_8` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_hero_8`
---
-
-INSERT INTO `user_hero_8` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`, `item4`, `item5`, `item6`, `item7`, `item8`) VALUES
-(1, 8, 30000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -319,7 +230,7 @@ INSERT INTO `user_hero_8` (`id`, `uid`, `mid`, `exp`, `item1`, `item2`, `item3`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_hero_9` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `mid` int(10) NOT NULL,
   `exp` int(12) NOT NULL DEFAULT '0',
@@ -330,10 +241,8 @@ CREATE TABLE IF NOT EXISTS `user_hero_9` (
   `item5` int(10) NOT NULL DEFAULT '0',
   `item6` int(10) NOT NULL DEFAULT '0',
   `item7` int(10) NOT NULL DEFAULT '0',
-  `item8` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hero_uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `item8` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -342,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `user_hero_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_0` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -351,9 +260,8 @@ CREATE TABLE IF NOT EXISTS `user_info_0` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -362,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `user_info_0` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_1` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -371,16 +279,8 @@ CREATE TABLE IF NOT EXISTS `user_info_1` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_info_1`
---
-
-INSERT INTO `user_info_1` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(1, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482395418);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -389,7 +289,7 @@ INSERT INTO `user_info_1` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_2` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -398,16 +298,8 @@ CREATE TABLE IF NOT EXISTS `user_info_2` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- 转存表中的数据 `user_info_2`
---
-
-INSERT INTO `user_info_2` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(2, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482395493);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -416,7 +308,7 @@ INSERT INTO `user_info_2` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_3` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -425,16 +317,8 @@ CREATE TABLE IF NOT EXISTS `user_info_3` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- 转存表中的数据 `user_info_3`
---
-
-INSERT INTO `user_info_3` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(3, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482395536);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -443,7 +327,7 @@ INSERT INTO `user_info_3` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_4` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -452,16 +336,8 @@ CREATE TABLE IF NOT EXISTS `user_info_4` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- 转存表中的数据 `user_info_4`
---
-
-INSERT INTO `user_info_4` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(4, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482396666);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -470,7 +346,7 @@ INSERT INTO `user_info_4` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_5` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -479,16 +355,8 @@ CREATE TABLE IF NOT EXISTS `user_info_5` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- 转存表中的数据 `user_info_5`
---
-
-INSERT INTO `user_info_5` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(5, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482398787);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -497,7 +365,7 @@ INSERT INTO `user_info_5` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_6` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -506,16 +374,8 @@ CREATE TABLE IF NOT EXISTS `user_info_6` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- 转存表中的数据 `user_info_6`
---
-
-INSERT INTO `user_info_6` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(6, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482401272);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -524,7 +384,7 @@ INSERT INTO `user_info_6` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_7` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -533,16 +393,8 @@ CREATE TABLE IF NOT EXISTS `user_info_7` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-
---
--- 转存表中的数据 `user_info_7`
---
-
-INSERT INTO `user_info_7` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(7, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482401979);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -551,7 +403,7 @@ INSERT INTO `user_info_7` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_8` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -560,16 +412,8 @@ CREATE TABLE IF NOT EXISTS `user_info_8` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- 转存表中的数据 `user_info_8`
---
-
-INSERT INTO `user_info_8` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`, `physical`, `storyID`, `updateTime`) VALUES
-(8, 'newPlayer', 1001, 1, 0, 0, 0, 150, 110001, 1482402276);
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -578,7 +422,7 @@ INSERT INTO `user_info_8` (`id`, `name`, `mid`, `hid`, `exp`, `coin`, `diamond`,
 --
 
 CREATE TABLE IF NOT EXISTS `user_info_9` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `mid` int(10) NOT NULL DEFAULT '1001',
   `hid` int(10) NOT NULL DEFAULT '0',
@@ -587,9 +431,8 @@ CREATE TABLE IF NOT EXISTS `user_info_9` (
   `diamond` int(10) NOT NULL DEFAULT '0',
   `physical` smallint(5) NOT NULL DEFAULT '150',
   `storyID` int(10) NOT NULL DEFAULT '1001',
-  `updateTime` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `updateTime` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -598,13 +441,10 @@ CREATE TABLE IF NOT EXISTS `user_info_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_0` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -613,13 +453,10 @@ CREATE TABLE IF NOT EXISTS `user_item_0` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_1` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -628,20 +465,10 @@ CREATE TABLE IF NOT EXISTS `user_item_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_2` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_2`
---
-
-INSERT INTO `user_item_2` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 2, 10009, 1482395493);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -650,20 +477,10 @@ INSERT INTO `user_item_2` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_3` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_3`
---
-
-INSERT INTO `user_item_3` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 3, 10009, 1482395536);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -672,20 +489,10 @@ INSERT INTO `user_item_3` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_4` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_4`
---
-
-INSERT INTO `user_item_4` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 4, 10009, 1482396666);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -694,20 +501,10 @@ INSERT INTO `user_item_4` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_5` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_5`
---
-
-INSERT INTO `user_item_5` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 5, 10009, 1482398787);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -716,20 +513,10 @@ INSERT INTO `user_item_5` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_6` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_6`
---
-
-INSERT INTO `user_item_6` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 6, 10009, 1482401272);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -738,20 +525,10 @@ INSERT INTO `user_item_6` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_7` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_7`
---
-
-INSERT INTO `user_item_7` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 7, 10009, 1482401979);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -760,20 +537,10 @@ INSERT INTO `user_item_7` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_8` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_item_8`
---
-
-INSERT INTO `user_item_8` (`id`, `uid`, `mid`, `updateTime`) VALUES
-(1, 8, 10009, 1482402276);
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -782,13 +549,10 @@ INSERT INTO `user_item_8` (`id`, `uid`, `mid`, `updateTime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_item_9` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `mid` int(10) NOT NULL,
-  `updateTime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `mid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -797,13 +561,11 @@ CREATE TABLE IF NOT EXISTS `user_item_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_0` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -812,13 +574,11 @@ CREATE TABLE IF NOT EXISTS `user_story_0` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_1` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -827,13 +587,11 @@ CREATE TABLE IF NOT EXISTS `user_story_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_2` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -842,13 +600,11 @@ CREATE TABLE IF NOT EXISTS `user_story_2` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_3` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -857,13 +613,11 @@ CREATE TABLE IF NOT EXISTS `user_story_3` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_4` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -872,13 +626,11 @@ CREATE TABLE IF NOT EXISTS `user_story_4` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_5` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -887,13 +639,11 @@ CREATE TABLE IF NOT EXISTS `user_story_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_6` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -902,20 +652,11 @@ CREATE TABLE IF NOT EXISTS `user_story_6` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_7` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user_story_7`
---
-
-INSERT INTO `user_story_7` (`id`, `uid`, `storyID`, `star`) VALUES
-(1, 7, 110001, 3);
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -924,13 +665,11 @@ INSERT INTO `user_story_7` (`id`, `uid`, `storyID`, `star`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_8` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -939,14 +678,501 @@ CREATE TABLE IF NOT EXISTS `user_story_8` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_story_9` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `storyID` int(10) NOT NULL,
-  `star` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `star` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `system_user_info`
+--
+ALTER TABLE `system_user_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_hero_0`
+--
+ALTER TABLE `user_hero_0`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_1`
+--
+ALTER TABLE `user_hero_1`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_2`
+--
+ALTER TABLE `user_hero_2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_3`
+--
+ALTER TABLE `user_hero_3`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_4`
+--
+ALTER TABLE `user_hero_4`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_5`
+--
+ALTER TABLE `user_hero_5`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_6`
+--
+ALTER TABLE `user_hero_6`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_7`
+--
+ALTER TABLE `user_hero_7`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_8`
+--
+ALTER TABLE `user_hero_8`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_hero_9`
+--
+ALTER TABLE `user_hero_9`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hero_uid` (`uid`);
+
+--
+-- Indexes for table `user_info_0`
+--
+ALTER TABLE `user_info_0`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_1`
+--
+ALTER TABLE `user_info_1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_2`
+--
+ALTER TABLE `user_info_2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_3`
+--
+ALTER TABLE `user_info_3`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_4`
+--
+ALTER TABLE `user_info_4`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_5`
+--
+ALTER TABLE `user_info_5`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_6`
+--
+ALTER TABLE `user_info_6`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_7`
+--
+ALTER TABLE `user_info_7`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_8`
+--
+ALTER TABLE `user_info_8`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_info_9`
+--
+ALTER TABLE `user_info_9`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_item_0`
+--
+ALTER TABLE `user_item_0`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_1`
+--
+ALTER TABLE `user_item_1`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_2`
+--
+ALTER TABLE `user_item_2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_3`
+--
+ALTER TABLE `user_item_3`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_4`
+--
+ALTER TABLE `user_item_4`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_5`
+--
+ALTER TABLE `user_item_5`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_6`
+--
+ALTER TABLE `user_item_6`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_7`
+--
+ALTER TABLE `user_item_7`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_8`
+--
+ALTER TABLE `user_item_8`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_item_9`
+--
+ALTER TABLE `user_item_9`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_0`
+--
+ALTER TABLE `user_story_0`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_1`
+--
+ALTER TABLE `user_story_1`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_2`
+--
+ALTER TABLE `user_story_2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_3`
+--
+ALTER TABLE `user_story_3`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_4`
+--
+ALTER TABLE `user_story_4`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_5`
+--
+ALTER TABLE `user_story_5`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_6`
+--
+ALTER TABLE `user_story_6`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_7`
+--
+ALTER TABLE `user_story_7`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_8`
+--
+ALTER TABLE `user_story_8`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `user_story_9`
+--
+ALTER TABLE `user_story_9`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `system_user_info`
+--
+ALTER TABLE `system_user_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_0`
+--
+ALTER TABLE `user_hero_0`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_1`
+--
+ALTER TABLE `user_hero_1`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_2`
+--
+ALTER TABLE `user_hero_2`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_3`
+--
+ALTER TABLE `user_hero_3`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_4`
+--
+ALTER TABLE `user_hero_4`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_5`
+--
+ALTER TABLE `user_hero_5`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_6`
+--
+ALTER TABLE `user_hero_6`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_7`
+--
+ALTER TABLE `user_hero_7`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_8`
+--
+ALTER TABLE `user_hero_8`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_hero_9`
+--
+ALTER TABLE `user_hero_9`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_0`
+--
+ALTER TABLE `user_info_0`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_1`
+--
+ALTER TABLE `user_info_1`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_2`
+--
+ALTER TABLE `user_info_2`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_3`
+--
+ALTER TABLE `user_info_3`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_4`
+--
+ALTER TABLE `user_info_4`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_5`
+--
+ALTER TABLE `user_info_5`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_6`
+--
+ALTER TABLE `user_info_6`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_7`
+--
+ALTER TABLE `user_info_7`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_8`
+--
+ALTER TABLE `user_info_8`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_info_9`
+--
+ALTER TABLE `user_info_9`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_0`
+--
+ALTER TABLE `user_item_0`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_1`
+--
+ALTER TABLE `user_item_1`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_2`
+--
+ALTER TABLE `user_item_2`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_3`
+--
+ALTER TABLE `user_item_3`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_4`
+--
+ALTER TABLE `user_item_4`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_5`
+--
+ALTER TABLE `user_item_5`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_6`
+--
+ALTER TABLE `user_item_6`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_7`
+--
+ALTER TABLE `user_item_7`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_8`
+--
+ALTER TABLE `user_item_8`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_item_9`
+--
+ALTER TABLE `user_item_9`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_0`
+--
+ALTER TABLE `user_story_0`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_1`
+--
+ALTER TABLE `user_story_1`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_2`
+--
+ALTER TABLE `user_story_2`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_3`
+--
+ALTER TABLE `user_story_3`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_4`
+--
+ALTER TABLE `user_story_4`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_5`
+--
+ALTER TABLE `user_story_5`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_6`
+--
+ALTER TABLE `user_story_6`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_7`
+--
+ALTER TABLE `user_story_7`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_8`
+--
+ALTER TABLE `user_story_8`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_story_9`
+--
+ALTER TABLE `user_story_9`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
