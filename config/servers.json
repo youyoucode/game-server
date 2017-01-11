@@ -12,13 +12,13 @@
   },
   "production":{
     "game": [
-    {"id": "game-server-1", "host": "192.168.0.199", "port": 3110}
+    {"id": "game-server-1", "host": "localhost", "port": 3110}
     ],
     "connector": [
-    {"id": "connector-server-1", "host": "192.168.0.199", "port": 3150, "clientPort": 3040, "frontend": true}
+    {"id": "connector-server-1", "host": "localhost", "port": 3150, "clientPort": 3040, "frontend": true}
     ],
     "gate":[
-     {"id":"gate-server-1", "host":"192.168.0.199", "clientPort": 3010, "frontend": true}
+     {"id":"gate-server-1", "host":"localhost", "clientPort": 3010, "frontend": true}
     ]
   }
 }
