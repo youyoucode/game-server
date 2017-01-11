@@ -60,9 +60,12 @@ handler.useItem = function(msg, session, next) {
 			return;
 		}
 		else if(seat==0) seat = ret;
+		if(msg.seat>0) ret = true;
+		else ret = false;
 		next(null, {
 			code: 200,
 			id:msg.id,
 			seat:seat,
+			ret:ret
 		})});
 };

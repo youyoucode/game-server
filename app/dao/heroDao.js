@@ -49,7 +49,7 @@ heroDao.useItem = function(uid,hid,id,seat,cb){
 	else
 	{
 		var sql = 'select * from user_hero_'+uid%10+' where id = ?';
-		var args = [uid,hid];
+		var args = [hid];
 		pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 			if(err){
 				utils.invokeCallback(cb, err, 0);
