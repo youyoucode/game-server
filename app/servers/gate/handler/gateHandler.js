@@ -57,7 +57,7 @@ handler.queryEntry = function(msg, session, next) {
 			}
 			// select connector
 			var res = dispatcher.dispatch(uid, connectors);
-			host = res.host;
+			host = res.clienthost;
 			port = res.clientPort;
 			cb(err);
 		}
