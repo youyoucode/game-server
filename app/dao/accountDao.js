@@ -29,6 +29,7 @@ accountDao.createAccount = function (account, cb) {
 	var args = [account,time];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if(err){
+			console.log(err);
 			utils.invokeCallback(cb, err, null);
 		}else{
 			utils.invokeCallback(cb, err, {"id":res.insertId,"account":account,"name":"","createTime":time});
