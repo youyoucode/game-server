@@ -68,3 +68,9 @@ GameRemote.prototype.useItem = function(uid,hid,id,seat,callback) {
 	});
 }
 
+GameRemote.prototype.selectHero = function(uid,hid,callback) {
+	userDao.selectHero(uid,hid,function(err, ret) {
+		callback(ret);
+	});
+}
+

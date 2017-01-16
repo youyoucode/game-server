@@ -98,6 +98,15 @@ userDao.createUser = function (uid, cb) {
 		});
 }
 
+userDao.selectHero = function (uid,hid,cb){
+	var sql = 'update user_info_' + uid%10 +' set hid = ? where id = ?';
+		var args = [hid,uid];
+		pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+			if (err) utils.invokeCallback(cb, err, 0);
+			else utils.invokeCallback(cb, err, hid);
+		});
+}
+
 userDao.updateInfo = function (uid,updateInfo, cb) {
 	var info = {"items":[]};
 	var args = [];
@@ -115,15 +124,18 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 			if(id==18000){
 				sql = sql + ",diamond = diamond + ?"
 				args.push(updateInfo['items'][i]['number']);
-				info.adddiamond = updateInfo['items'][i]['number'];
+				if(info.adddiamond) info.adddiamond = info.adddiamond + updateInfo['items'][i]['number'];
+				else info.adddiamond = updateInfo['items'][i]['number'];
 			}else if(id==18001){
 				sql = sql + ",physical = physical + ?"
 				args.push(updateInfo['items'][i]['number']);
-				info.addphysical = updateInfo['items'][i]['number'];
+				if(info.addphysical) info.addphysical = info.addphysical + updateInfo['items'][i]['number'];
+				else info.addphysical = updateInfo['items'][i]['number'];
 			}else if(id==18002){
 				sql = sql + ",exp = exp + ?"
 				args.push(updateInfo['items'][i]['number']);
-				info.addexp = updateInfo['items'][i]['number'];
+				if(info.addexp) info.addexp = info.addexp + updateInfo['items'][i]['number'];
+				else info.addexp = updateInfo['items'][i]['number'];
 			}else{
 				functions.push(function(callback){
 					var mid = id;

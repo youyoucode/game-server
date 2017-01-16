@@ -69,3 +69,20 @@ handler.useItem = function(msg, session, next) {
 			ret:ret
 		})});
 };
+
+handler.selectHero = function(msg, session, next) {
+	var uid = session.get('uid');
+	var hid = msg.hid;
+	this.app.rpc.game.gameRemote.selectHero(session,uid,hid,function(ret){
+		if(ret<1){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			uid:msg.id,
+			hid:ret
+		})});
+}
