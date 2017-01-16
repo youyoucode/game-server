@@ -20,21 +20,21 @@ storyDao.updateStoryInfo = function(uid,id,star,cb){
 	var args = [uid,id];
 	pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 		if(err){
-			utils.invokeCallback(cb, err, false);
+			utils.invokeCallback(cb, err, -1);
 		}else{
 			if (!!res) {
 				if(res.star<star){
 					sql = 'update user_story_' + uid%10 +' set storyID = ?,star = ? where uid = ?';
 					args = [id,star,uid];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-						utils.invokeCallback(cb, err, true);
+						utils.invokeCallback(cb, err, res.star);
 					});
-				}else utils.invokeCallback(cb, err, false);
+				}else utils.invokeCallback(cb, err, -1);
 			}else{
 				sql = 'insert into user_story_' + uid%10 +' (uid, storyID, star) values(?,?,?)';
 				args = [uid,id,star];
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-					utils.invokeCallback(cb, err, true);
+					utils.invokeCallback(cb, err, 0);
 				});
 			}
 		}

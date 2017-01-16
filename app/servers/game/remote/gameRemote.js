@@ -33,15 +33,16 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 			var storyCFG = configUtil.getConfig("pve_story_level",id);
 			if(id-info.storyID>=0){
 				updateInfo.storyID = Number(storyCFG.unlock_level);
-				console.log(storyCFG.unlock_level);
 			}
 			storyDao.updateStoryInfo(uid,id,star,function(err,drop) {
-				if(drop){
-					var items = storyCFG['star'+star+"_reward"].split("|");
-					var numbers = storyCFG['star'+star+"_reward_num"].split("|");
+				if(drop>=0){
 					updateInfo.items = [];
-					for (var i = 0;i<items.length;i++){
-						updateInfo.items.push({"id":Number(items[i]),"number":Number(numbers[i])});
+					for (var j = drop+1;j<=star;j++){
+						var items = storyCFG['star'+j+"_reward"].split("|");
+						var numbers = storyCFG['star'+j+"_reward_num"].split("|");
+						for (var i = 0;i<items.length;i++){
+							updateInfo.items.push({"id":Number(items[i]),"number":Number(numbers[i])});
+						}
 					}
 				}
 				cb(err);
