@@ -46,12 +46,17 @@ userDao.getUserInfo = function (uid, cb) {
 userDao.createUser = function (uid, cb) {
 	var time = new Date().getTime()/1000;
 	var connection = pomelo.app.get('dbclient');
-	var originalData = {"hero":30000,"icon":1001,"story":110001,"item":14000};
+	var originalData = {"boy":30001,"hero":30000,"icon":1001,"story":110001,"item":14000};
 	var data = {},sql,args,heroid,itemid;
 	async.series([
 			function(callback){
 				itemDao.createItem(uid,originalData.item,function(err, id) {
 					itemid = id;
+					callback(err);
+				});
+			},
+			function(callback){
+				heroDao.createHeroWithItem(uid,originalData.boy,itemid,function(err, id) {
 					callback(err);
 				});
 			},
