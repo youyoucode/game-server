@@ -62,6 +62,32 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 	});
 };
 
+GameRemote.prototype.beginFight = function(uid,id,callback) {
+	var updateInfo = {};
+	var userInfo;
+	async.waterfall([
+		function(cb) {
+			userDao.getUserInfo(uid,function(err, dat) {
+				cb(err,dat.userinfo);
+			});
+		},
+		function(info, cb) {
+			userInfo = info;
+			var storyCFG = configUtil.getConfig("pve_story_level",id);
+			updateInfo.physical = -Number(storyCFG.energy);
+			userDao.updateInfo(uid,updateInfo,function(err,dat) {
+				cb(dat,err);
+			});
+		}
+	], function(dat,err) {
+		if(err) {
+			callback(null);
+			return;
+		}
+		callback({"id":id,"updateInfo":dat});
+	});
+};
+
 GameRemote.prototype.useItem = function(uid,hid,id,seat,callback) {
 	heroDao.useItem(uid,hid,id,seat,function(err, ret) {
 		callback(ret);

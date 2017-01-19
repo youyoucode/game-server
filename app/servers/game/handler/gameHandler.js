@@ -49,6 +49,22 @@ handler.playStory = function(msg, session, next) {
 		})});
 };
 
+handler.beginFight = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.beginFight(session,uid, msg.id,function(info){
+		if(!info){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			id: info.id,
+			updateInfo:info.updateInfo
+		})});
+};
+
 handler.useItem = function(msg, session, next) {
 	var uid = session.get('uid');
 	var seat = msg.seat;
