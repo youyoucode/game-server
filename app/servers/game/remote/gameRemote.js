@@ -100,3 +100,42 @@ GameRemote.prototype.selectHero = function(uid,hid,callback) {
 	});
 }
 
+GameRemote.prototype.buyHero = function(uid,mid,callback) {
+	var updateInfo = {};
+	var userInfo;
+	async.waterfall([
+		function(cb) {
+			userDao.getUserInfo(uid,function(err, dat) {
+				cb(err,dat.userinfo);
+			});
+		},
+		function(info, cb) {
+			userInfo = info;
+			var heroCFG = configUtil.getConfig("hero",mid);
+			if(Number(userInfo.diamond)-Number(storyCFG.price)>=0)
+			{
+				updateInfo.diamond = -Number(storyCFG.price);
+				userDao.updateInfo(uid,updateInfo,function(err,dat) {
+					cb(1,err);
+				});
+			}else{
+				cb(0,err);
+			}
+		},
+		function(ret,cb) {
+			if(ret>0)
+			{
+				heroDao.createHero(uid,mid,function(err, id) {
+					cb(id,err);
+				});
+			}else cb(0,null);
+		}
+	], function(id,err) {
+		if(err) {
+			callback(null);
+			return;
+		}
+		callback({"id":id,"updateInfo":userInfo});
+	});
+}
+

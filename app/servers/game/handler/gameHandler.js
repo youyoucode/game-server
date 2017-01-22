@@ -102,3 +102,20 @@ handler.selectHero = function(msg, session, next) {
 			hid:ret
 		})});
 }
+
+handler.buyHero = function(msg, session, next) {
+	var uid = session.get('uid');
+	var mid = msg.mid;
+	this.app.rpc.game.gameRemote.buyHero(session,uid,mid,function(ret){
+		if(ret<1){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			updateInfo:ret.updateInfo,
+			hid:ret.id
+		})});
+}
