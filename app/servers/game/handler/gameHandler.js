@@ -116,6 +116,7 @@ handler.buyHero = function(msg, session, next) {
 		next(null, {
 			code: 200,
 			updateInfo:ret.updateInfo,
-			hid:ret.id
+			hid:ret.id,
+			mid:ret.mid
 		})});
 }

@@ -135,7 +135,7 @@ GameRemote.prototype.buyHero = function(uid,mid,callback) {
 			callback(null);
 			return;
 		}
-		callback({"id":id,"updateInfo":userInfo});
+		callback({"id":id,"updateInfo":userInfo,"mid":mid});
 	});
 }
 
