@@ -4,8 +4,9 @@ var utils = require('../util/utils');
 var itemDao = module.exports;
 
 itemDao.createItem = function(uid,mid,cb){
-	var sql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
-	var args = [uid,mid];
+	var time = new Date().getTime()/1000;
+	var sql = 'insert into user_item_' + uid%10 +' (uid, mid,createTime) values(?,?,?)';
+	var args = [uid,mid,time];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) {
 			logger.error('create hero for heroDao failed! ' + err.stack);
