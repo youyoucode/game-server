@@ -21,27 +21,28 @@ var handler = Handler.prototype;
  */
 handler.queryEntry = function(msg, session, next) {
 	var self = this;
-	var name, uid, host, port;
+	var pid,account, uid, host, port;
 	async.waterfall([
 		function(cb) {
 			if(!msg.name){
 				accountDao.getRandomID(function(err, ret) {
-					name = ret+"";
+					account = ret+"";
 					cb(err);
 				});
 			}else{
-				name = msg.name;
+				account = msg.name;
+				pid = msg.pid;
 				cb(null);
 			}
 		},
 		function(cb) {
-			accountDao.getAccountInfo(name,function(err, player) {
+			accountDao.getAccountInfo(account,pid,function(err, player) {
 				cb(err,player);
 			});
 		},
 		function(player, cb) {
 			if(!player){
-				accountDao.createAccount(name,function(err, player) {
+				accountDao.createAccount(account,function(err, player) {
 					cb(err,player.id);
 				});
 			}else cb(err,player.id)

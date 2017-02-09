@@ -9,9 +9,14 @@ var accountDao = module.exports;
  * @param {String} passwd
  * @param {function} cb
  */
-accountDao.getAccountInfo = function (account, cb) {
+accountDao.getAccountInfo = function (account,pid, cb) {
 	var sql = 'select * from system_user_info where account = ?';
 	var args = [account];
+	if(pid.length>0)
+	{
+		sql = 'select * from system_user_info where pid = ?';
+		args = [pid];
+	}
 	pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 		if(err){
 			utils.invokeCallback(cb, err, null);
