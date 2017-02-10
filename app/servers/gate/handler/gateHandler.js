@@ -67,6 +67,6 @@ handler.queryEntry = function(msg, session, next) {
 			next(err, {code: 500});
 			return;
 		}
-		next(null, {code: 200, username:name, uid: uid, host: host, port: port});
+		next(null, {code: 200, username:account, uid: uid, host: host, port: port});
 	});
 };
