@@ -27,6 +27,7 @@ handler.queryEntry = function(msg, session, next) {
 			if(!msg.name){
 				accountDao.getRandomID(function(err, ret) {
 					account = ret+"";
+					pid = "";
 					cb(err);
 				});
 			}else{
