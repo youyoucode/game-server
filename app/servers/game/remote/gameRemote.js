@@ -46,6 +46,7 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 						}
 					}
 				}
+				console.log(updateInfo.items);
 				cb(err);
 			});
 		},

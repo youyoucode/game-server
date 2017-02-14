@@ -124,8 +124,10 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 		info.storyID = updateInfo['storyID'];
 	}
 	if(updateInfo['items']){
+		console.log(updateInfo['items']);
 		for (var i = 0;i<updateInfo['items'].length;i++){
 			var id = updateInfo['items'][i]['id'];
+			console.log(id);
 			if(id==18000){
 				sql = sql + ",diamond = diamond + ?"
 				args.push(updateInfo['items'][i]['number']);
