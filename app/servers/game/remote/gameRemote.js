@@ -41,6 +41,7 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 						var items = storyCFG['star'+j+"_reward"].split("|");
 						var numbers = storyCFG['star'+j+"_reward_num"].split("|");
 						for (var i = 0;i<items.length;i++){
+							console.log(items[i]);
 							updateInfo.items.push({"id":Number(items[i]),"number":Number(numbers[i])});
 						}
 					}
