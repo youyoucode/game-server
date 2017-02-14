@@ -124,10 +124,8 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 		info.storyID = updateInfo['storyID'];
 	}
 	if(updateInfo['items']){
-		console.log(updateInfo['items']);
 		for (var i = 0;i<updateInfo['items'].length;i++){
 			var id = updateInfo['items'][i]['id'];
-			console.log(id);
 			if(id==18000){
 				sql = sql + ",diamond = diamond + ?"
 				args.push(updateInfo['items'][i]['number']);
@@ -146,6 +144,7 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 			}else{
 				functions.push(function(callback){
 					var mid = id;
+					console.log(mid);
 					var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
 					var itemargs = [uid,mid];
 					pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
@@ -168,6 +167,7 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				});
 			});
 		}
+		console.log(functions);
 		async.series(functions,function(err,results) {
 			utils.invokeCallback(cb, err, info);
 		});
