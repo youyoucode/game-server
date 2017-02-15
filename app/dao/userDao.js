@@ -118,6 +118,8 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 	var sql = "";
 	var time = new Date().getTime()/1000;
 	var functions = [];
+	var seat = 0;
+	var mids = [];
 	if(updateInfo['storyID']){
 		sql = sql + ",storyID = ?"
 		args.push(updateInfo['storyID']);
@@ -142,8 +144,7 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				if(info.addexp) info.addexp = info.addexp + updateInfo['items'][i]['number'];
 				else info.addexp = updateInfo['items'][i]['number'];
 			}else{
-				var seat = 0;
-				var mids = [];
+				
 				for (var j=0;j<updateInfo['items'][i]['number']+0;j++)
 				{
 					mids.push(updateInfo['items'][seat]['id']);
