@@ -147,7 +147,7 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				for (var j=0;j<updateInfo['items'][i]['number']+0;j++){
 					functions.push(function(callback){
 						var mid = updateInfo['items'][seat]['id'];
-						if(oldmid>0 && oldmid~=mid) seat = seat + 1;
+						if(oldmid>0 && oldmid!=mid) seat = seat + 1;
 						console.log(seat+","+mid);
 						oldmid = mid;
 						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
