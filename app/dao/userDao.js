@@ -143,13 +143,13 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				else info.addexp = updateInfo['items'][i]['number'];
 			}else{
 				var seat = 0;
-				var oldmid = 0;
-				for (var j=0;j<updateInfo['items'][i]['number']+0;j++){
+				var mids = [];
+				for (var j=0;j<updateInfo['items'][i]['number']+0;j++)
+				{
+					mids.push(updateInfo['items'][seat]['id']);
 					functions.push(function(callback){
-						var mid = updateInfo['items'][seat]['id'];
-						if(oldmid>0 && oldmid!=mid) seat = seat + 1;
-						console.log(seat+","+mid);
-						oldmid = mid;
+						var mid = mids[seat]['id'];
+						seat = seat + 1;
 						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
 						var itemargs = [uid,mid];
 						pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
@@ -158,6 +158,7 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 						});
 					});
 				}
+				seat = 0;
 			}
 		}
 	}
@@ -167,7 +168,6 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 		if(sql!=""){
 			functions.push(function(callback){
 				sql = 'update user_info_'+uid%10 + " set " + sql.substring(1) + " where id = ?";
-				console.log(sql);
 				args.push(uid);
 				pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 					callback(err);
