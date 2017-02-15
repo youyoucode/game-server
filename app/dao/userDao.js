@@ -142,16 +142,22 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				if(info.addexp) info.addexp = info.addexp + updateInfo['items'][i]['number'];
 				else info.addexp = updateInfo['items'][i]['number'];
 			}else{
-				var mid = id;
-				functions.push(function(callback){
-					var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
-					console.log(mid);
-					var itemargs = [uid,mid];
-					pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
-						info.items.push({"id":res.insertId,"uid":uid,"mid":mid});
-						callback(err);
+				var seat = 0;
+				var oldmid = 0;
+				for (var j=0;j<updateInfo['items'][i]['number']+0;j++){
+					functions.push(function(callback){
+						var mid = updateInfo['items'][seat]['id'];
+						if(oldmid>0 && oldmid~=mid) seat = seat + 1;
+						console.log(seat+","+mid);
+						oldmid = mid;
+						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
+						var itemargs = [uid,mid];
+						pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
+							info.items.push({"id":res.insertId,"uid":uid,"mid":mid});
+							callback(err);
+						});
 					});
-				});
+				}
 			}
 		}
 	}
@@ -168,9 +174,7 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				});
 			});
 		}
-		console.log("start");
 		async.series(functions,function(err,results) {
-			console.log("start2");
 			utils.invokeCallback(cb, err, info);
 		});
 	}		
