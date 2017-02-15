@@ -144,10 +144,10 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				if(info.addexp) info.addexp = info.addexp + updateInfo['items'][i]['number'];
 				else info.addexp = updateInfo['items'][i]['number'];
 			}else{
-				
+				seat = 0;
 				for (var j=0;j<updateInfo['items'][i]['number']+0;j++)
 				{
-					mids.push(updateInfo['items'][seat]['id']);
+					mids.push(updateInfo['items'][i]['id']);
 					functions.push(function(callback){
 						var mid = mids[seat];
 						seat = seat + 1;
@@ -160,7 +160,6 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 						});
 					});
 				}
-				seat = 0;
 			}
 		}
 	}
