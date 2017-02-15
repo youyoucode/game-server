@@ -148,8 +148,9 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				{
 					mids.push(updateInfo['items'][seat]['id']);
 					functions.push(function(callback){
-						var mid = mids[seat]['id'];
+						var mid = mids[seat];
 						seat = seat + 1;
+						console.log(seat+","+mid);
 						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
 						var itemargs = [uid,mid];
 						pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
