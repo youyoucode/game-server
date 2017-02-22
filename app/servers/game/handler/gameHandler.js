@@ -8,14 +8,38 @@ var Handler = function(app) {
 
 var handler = Handler.prototype;
 
-/**
- * Send messages to users
- *
- * @param {Object} msg message from client
- * @param {Object} session
- * @param  {Function} next next stemp callback
- *
- */
+handler.getStoryCode = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.getStoryCode(session,uid,msg.storyid, function(storycode){
+		if(!storycode){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			storycode: storycode
+		});
+	});
+};
+
+handler.saveStoryCode = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.saveStoryCode(session,uid,msg.id,msg.code, function(res){
+		if(!res){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			res: res
+		});
+	});
+};
+
 handler.getStoryInfo = function(msg, session, next) {
 	var uid = session.get('uid');
 	this.app.rpc.game.gameRemote.getStoryInfo(session,uid, function(story){

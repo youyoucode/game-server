@@ -13,6 +13,18 @@ var GameRemote = function(app) {
 	this.app = app;
 };
 
+GameRemote.prototype.getStoryCode = function(uid,storyid,callback) {
+	storyDao.getStoryCode(uid,storyid,function(err, storycode) {
+		callback(storycode);
+	});
+}
+
+GameRemote.prototype.saveStoryCode = function(uid,id,code,callback) {
+	storyDao.saveStoryCode(uid,id,code,function(err, res) {
+		callback(res);
+	});
+}
+
 GameRemote.prototype.getStoryInfo = function(uid,callback) {
 	storyDao.getStoryInfo(uid,function(err, story) {
 		callback(story);

@@ -15,6 +15,30 @@ storyDao.getStoryInfo = function (uid, cb) {
 	});
 }
 
+storyDao.getStoryCode = function (uid,storyid,cb) {
+	var sql = 'select * from user_code_' + uid%10 +' where uid = ? and storyid = ?';
+	var args = [uid,storyid];
+	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+		if(err){
+			utils.invokeCallback(cb, err, null);
+		}else{
+			utils.invokeCallback(cb, err,res);
+		}
+	});
+}
+
+storyDao.saveStoryCode = function (uid,id,code,cb) {
+	var sql = 'update user_code_' + uid%10 +' set code = ? where id = ?';
+	var args = [code,id];
+	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+		if(err){
+			utils.invokeCallback(cb, err, null);
+		}else{
+			utils.invokeCallback(cb, err,res);
+		}
+	});
+}
+
 storyDao.updateStoryInfo = function(uid,id,star,cb){
 	var sql = 'select * from user_story_'+uid%10+' where uid = ? and storyID = ?';
 	var args = [uid,id];
