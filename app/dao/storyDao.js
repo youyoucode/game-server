@@ -18,7 +18,7 @@ storyDao.getStoryInfo = function (uid, cb) {
 storyDao.getStoryCode = function (uid,storyid,cb) {
 	var sql = 'select * from user_code_' + uid%10 +' where uid = ? and storyid = ?';
 	var args = [uid,storyid];
-	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+	pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 		if(err){
 			utils.invokeCallback(cb, err, null);
 		}else{
