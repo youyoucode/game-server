@@ -27,7 +27,7 @@ storyDao.getStoryCode = function (uid,storyid,cb) {
 				var codesql = 'insert into user_code_' + uid%10 +' (uid, storyid) values(?,?)';
 				var codeargs = [uid,storyid];
 				pomelo.app.get('dbclient').query(codesql,codeargs,function(err, res) {
-					utils.invokeCallback(cb, err, {"id":res.insertId,"uid":uid,"storyID"storyid,"code":""});
+					utils.invokeCallback(cb, err, {"id":res.insertId,"uid":uid,"storyID":storyid,"code":""});
 				});
 			}
 		}
