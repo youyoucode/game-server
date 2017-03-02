@@ -56,12 +56,12 @@ userDao.createUser = function (uid, cb) {
 				});
 			},
 			function(callback){
-				heroDao.createHeroWithItem(uid,originalData.boy,itemid,function(err, id) {
+				heroDao.createHero(uid,originalData.boy,function(err, id) {
 					callback(err);
 				});
 			},
 			function(callback){
-				heroDao.createHeroWithItem(uid,originalData.hero,itemid,function(err, id) {
+				heroDao.createHero(uid,originalData.hero,function(err, id) {
 					heroid = id;
 					callback(err);
 				});
