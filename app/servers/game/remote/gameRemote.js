@@ -31,6 +31,30 @@ GameRemote.prototype.getStoryInfo = function(uid,callback) {
 	});
 }
 
+GameRemote.prototype.getQuestions = function(uid,callback) {
+	questionDao.getQuestions(uid,function(err, questions) {
+		callback(questions);
+	});
+}
+
+GameRemote.prototype.askQuestion = function(uid,storyid,code,callback) {
+	questionDao.askQuestion(uid,storyid,code,function(err, insertid) {
+		callback(insertid);
+	});
+}
+
+GameRemote.prototype.getReplys = function(uid,callback) {
+	questionDao.getReplys(uid,function(err, replys) {
+		callback(replys);
+	});
+}
+
+GameRemote.prototype.replyQuestion = function(uid,stuid,storyid,id,code,callback) {
+	questionDao.askQuestion(uid,stuid,storyid,id,code,function(err, insertid) {
+		callback(insertid);
+	});
+}
+
 GameRemote.prototype.playStory = function(uid,id,star,callback) {
 	var updateInfo = {};
 	var userInfo;

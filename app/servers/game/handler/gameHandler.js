@@ -144,3 +144,67 @@ handler.buyHero = function(msg, session, next) {
 			mid:ret.mid
 		})});
 }
+
+handler.getQuestions = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.getQuestions(session,uid, function(questions){
+		if(!questions){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			questions: questions
+		});
+	});
+};
+
+handler.askQuestion = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.askQuestion(session,uid,msg.storyid,msg.code, function(insertid){
+		if(!questions){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			insertid: insertid
+		});
+	});
+};
+
+handler.getReplys = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.getReplys(session,uid, function(replys){
+		if(!replys){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			replys: replys
+		});
+	});
+};
+
+handler.replyQuestion = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.askQuestion(session,uid,msg.studentid,msg.storyid,msg.id,msg.code, function(insertid){
+		if(!insertid){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			insertid: insertid
+		});
+	});
+};
