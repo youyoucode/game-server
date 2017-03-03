@@ -16,7 +16,7 @@ heroDao.createHeroWithItem = function(uid,mid,itemid,cb){
 }
 
 heroDao.createHero = function(uid,mid,cb){
-	var sql = 'insert into user_hero_' + uid%10 +' (uid, mid) values(?,?,?)';
+	var sql = 'insert into user_hero_' + uid%10 +' (uid, mid) values(?,?)';
 	var args = [uid,mid];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) {
