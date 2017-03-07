@@ -38,8 +38,8 @@ GameRemote.prototype.getQuestions = function(uid,callback) {
 	});
 }
 
-GameRemote.prototype.askQuestion = function(uid,storyid,code,callback) {
-	questionDao.askQuestion(uid,storyid,code,function(err, insertid) {
+GameRemote.prototype.askQuestion = function(uid,studentid,storyid,code,callback) {
+	questionDao.askQuestion(uid,studentid,storyid,code,function(err, insertid) {
 		callback(insertid);
 	});
 }
