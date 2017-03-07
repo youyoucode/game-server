@@ -1,6 +1,7 @@
 var userDao = require('../../../dao/userDao');
 var storyDao = require('../../../dao/storyDao');
 var heroDao = require('../../../dao/heroDao');
+var questionDao = require('../../../dao/heroDao');
 var async = require('async');
 var configUtil = require('../../../util/configUtil');
 var gameUtil = require('../../../util/gameUtil');
