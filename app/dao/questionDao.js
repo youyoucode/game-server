@@ -16,8 +16,9 @@ questionDao.getQuestions = function (uid, cb) {
 }
 
 questionDao.askQuestion = function(uid,studentid,storyid,code,cb){
-	var sql = 'insert into user_question_' + uid%10 +' (uid, studentid, storyid, code) values(?,?,?)';
-	var args = [uid,studentid,storyid,code];
+	var time = new Date().getTime()/1000;
+	var sql = 'insert into user_question_' + uid%10 +' (uid, studentid, storyid, code, createTime) values(?,?,?,?,?)';
+	var args = [uid,studentid,storyid,code,time];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) {
 			logger.error('create question for question failed! ' + err.stack);
@@ -38,15 +39,16 @@ questionDao.getReplys = function(uid,cb){
 	});
 }
 
-questionDao.replyQuestion = function(uid,stuid,storyid,id,code,cb){
-	var sql = 'update user_question_' + stuid%10 +' set readed = 1 where id = ?';
+questionDao.replyQuestion = function(uid,studentid,storyid,id,code,cb){
+	var sql = 'update user_question_' + uid%10 +' set readed = 1 where id = ?';
 	var args = [id];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) utils.invokeCallback(cb, err, null);
 		else
 		{
-			sql = 'insert into user_reply_' + uid%10 +' (uid, storyid, code) values(?,?,?)';
-			args = [uid,storyid,code];
+			var time = new Date().getTime()/1000;
+			sql = 'insert into user_reply_' + studentid%10 +' (uid, storyid, code,createTime) values(?,?,?,?)';
+			args = [studentid,storyid,code,time];
 			pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				if (err) {
 					utils.invokeCallback(cb, err, null);
