@@ -51,7 +51,7 @@ GameRemote.prototype.getReplys = function(uid,callback) {
 }
 
 GameRemote.prototype.replyQuestion = function(uid,stuid,storyid,id,code,callback) {
-	questionDao.askQuestion(uid,stuid,storyid,id,code,function(err, insertid) {
+	questionDao.replyQuestion(uid,stuid,storyid,id,code,function(err, insertid) {
 		callback(insertid);
 	});
 }
