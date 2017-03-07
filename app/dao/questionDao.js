@@ -15,9 +15,9 @@ questionDao.getQuestions = function (uid, cb) {
 	});
 }
 
-questionDao.askQuestion = function(uid,storyid,code,cb){
-	var sql = 'insert into user_question_' + uid%10 +' (uid, storyid, code) values(?,?,?)';
-	var args = [uid,storyid,code];
+questionDao.askQuestion = function(uid,studentid,storyid,code,cb){
+	var sql = 'insert into user_question_' + uid%10 +' (uid, studentid, storyid, code) values(?,?,?)';
+	var args = [uid,studentid,storyid,code];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) {
 			logger.error('create question for question failed! ' + err.stack);
