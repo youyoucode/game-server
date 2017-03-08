@@ -1,5 +1,3 @@
-var loginRemote = require('../remote/loginRemote');
-
 module.exports = function(app) {
 	return new Handler(app);
 };
@@ -24,4 +22,20 @@ handler.createUser = function(msg, session, next) {
 	next(null, {
 		route: msg.route
 	});
+};
+
+handler.getUserInfo = function(msg, session, next) {
+	this.app.rpc.game.loginRemote.login(session,msg.id, function(data){
+		if(!data){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			user: data.userinfo,
+			heros: data.heros,
+			equips:data.equips
+		})});
 };

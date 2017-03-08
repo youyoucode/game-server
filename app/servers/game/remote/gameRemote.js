@@ -49,7 +49,7 @@ GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code
 		//tell teacher uid
 		//var time = new Date().getTime()/1000;
 		//pomelo.app.get('channelService').pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [uids], errHandler);
-		callback(res.insertid);
+		callback(res);
 	});
 }
 
