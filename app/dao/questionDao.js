@@ -15,10 +15,10 @@ questionDao.getQuestions = function (uid, cb) {
 	});
 }
 
-questionDao.askQuestion = function(uid,studentid,storyid,code,cb){
+questionDao.askQuestion = function(uid,studentid,classname,storyid,code,cb){
 	var time = new Date().getTime()/1000;
-	var sql = 'insert into user_question_' + uid%10 +' (uid, studentid, storyid, code, createTime) values(?,?,?,?,?)';
-	var args = [uid,studentid,storyid,code,time];
+	var sql = 'insert into user_question_' + uid%10 +' (uid,studentid,classname, storyid, code, createTime) values(?,?,?,?,?,?)';
+	var args = [uid,studentid,classname,storyid,code,time];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 		if (err) {
 			logger.error('create question for question failed! ' + err.stack);

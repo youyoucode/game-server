@@ -163,7 +163,7 @@ handler.getQuestions = function(msg, session, next) {
 
 handler.askQuestion = function(msg, session, next) {
 	var uid = session.get('uid');
-	this.app.rpc.game.gameRemote.askQuestion(session,msg.teacherid,uid,msg.storyid,msg.code, function(insertid){
+	this.app.rpc.game.gameRemote.askQuestion(session,msg.teacherid,uid,msg.classname,msg.storyid,msg.code, function(insertid){
 		if(!insertid){
 			next(null, {
 				code: 500
