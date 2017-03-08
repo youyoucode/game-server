@@ -38,9 +38,18 @@ GameRemote.prototype.getQuestions = function(uid,callback) {
 	});
 }
 
+function errHandler(err, fails){
+	if(!!err){
+		logger.error('Push Message error! %j', err.stack);
+	}
+}
+
 GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code,callback) {
-	questionDao.askQuestion(uid,studentid,classname,storyid,code,function(err, insertid) {
-		callback(insertid);
+	questionDao.askQuestion(uid,studentid,classname,storyid,code,function(err, res) {
+		//tell teacher uid
+		//var time = new Date().getTime()/1000;
+		//pomelo.app.get('channelService').pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [uids], errHandler);
+		callback(res.insertid);
 	});
 }
 
