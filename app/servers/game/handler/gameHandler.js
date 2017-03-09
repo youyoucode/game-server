@@ -165,9 +165,7 @@ handler.getQuestions = function(msg, session, next) {
 
 handler.askQuestion = function(msg, session, next) {
 	var uid = session.get('uid');
-	console.log(userManager.getUser(389));
-	var frontid = userManager.getUser(Number(uid));
-	console.log(frontid);
+	var frontid = "connector-server-1";
 	this.app.rpc.game.gameRemote.askQuestion(session,msg.teacherid,uid,msg.classname,msg.storyid,msg.code,frontid, function(insertid){
 		if(!insertid){
 			next(null, {
