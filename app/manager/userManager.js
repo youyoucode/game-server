@@ -1,9 +1,10 @@
-var users = {};
+var userSessions = {};
 
 module.exports.saveUser = function(uid,frontid) {
-    users[uid] = frontid;
+    userSessions[uid] = frontid;
+    console.log(userSessions[uid]);
 };
 
 module.exports.getUser = function(uid) {
-    return users[uid];
+    return userSessions[uid];
 };
