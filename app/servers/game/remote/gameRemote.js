@@ -5,6 +5,7 @@ var questionDao = require('../../../dao/questionDao');
 var async = require('async');
 var configUtil = require('../../../util/configUtil');
 var gameUtil = require('../../../util/gameUtil');
+var userManager = require('../../../manager/userManager');
 
 module.exports = function(app) {
 	return new GameRemote(app);
@@ -47,8 +48,9 @@ function errHandler(err, fails){
 GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code,callback) {
 	questionDao.askQuestion(uid,studentid,classname,storyid,code,function(err, res) {
 		//tell teacher uid
-		//var time = new Date().getTime()/1000;
-		//pomelo.app.get('channelService').pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [uids], errHandler);
+		var time = new Date().getTime()/1000;
+		var frontid = userManager.getUser(uid);
+		pomelo.app.get('channelService').pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [{"uid":uid,"sid":frontid}], errHandler);
 		callback(res);
 	});
 }

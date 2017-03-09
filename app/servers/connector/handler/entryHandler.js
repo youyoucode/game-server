@@ -1,3 +1,5 @@
+var userManager = require('../../../manager/userManager');
+
 module.exports = function(app) {
   return new Handler(app);
 };
@@ -24,6 +26,7 @@ Handler.prototype.enter = function(msg, session, next) {
 	}
 	session.bind(uid);
 	session.set('uid', uid);
+	userManager.saveUser(uid,session.frontedId);
 	session.push('uid', function(err) {
 		if(err) {
 			console.error('set uid for session service failed! error is : %j', err.stack);
