@@ -19,7 +19,7 @@ questionDao.askQuestion = function(uid,studentid,classname,storyid,code,cb){
 	var time = new Date().getTime()/1000;
 	var sql = 'select * from user_info_' + studentid%10 +' where id = ?';
 	var args = [studentid];
-	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+	pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 		if (err) {
 			logger.error('create question for question failed! ' + err.stack);
 			utils.invokeCallback(cb, err, null);
@@ -29,7 +29,6 @@ questionDao.askQuestion = function(uid,studentid,classname,storyid,code,cb){
 			args = [uid,studentid,studentName,classname,storyid,code,time];
 			pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				if (err) {
-					logger.error('create question for question failed! ' + err.stack);
 					utils.invokeCallback(cb, err, null);
 				} else utils.invokeCallback(cb, err, res.insertId);
 			});
