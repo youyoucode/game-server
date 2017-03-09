@@ -198,7 +198,8 @@ handler.getReplys = function(msg, session, next) {
 
 handler.replyQuestion = function(msg, session, next) {
 	var uid = session.get('uid');
-	this.app.rpc.game.gameRemote.replyQuestion(session,uid,msg.studentid,msg.storyid,msg.id,msg.code, function(insertid){
+	var frontid = "connector-server-1";
+	this.app.rpc.game.gameRemote.replyQuestion(session,uid,msg.studentid,msg.storyid,msg.id,msg.code,frontid, function(insertid){
 		if(!insertid){
 			next(null, {
 				code: 500
