@@ -27,7 +27,6 @@ Handler.prototype.enter = function(msg, session, next) {
 	session.bind(uid);
 	session.set('uid', uid);
 	userManager.saveUser(uid,session.frontendId);
-	console.log(userManager.getUser(389));
 	session.push('uid', function(err) {
 		if(err) {
 			console.error('set uid for session service failed! error is : %j', err.stack);

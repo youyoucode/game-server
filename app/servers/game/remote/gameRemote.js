@@ -50,8 +50,8 @@ GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code
 	questionDao.askQuestion(uid,studentid,classname,storyid,code,function(err, res) {
 		//tell teacher uid
 		var time = new Date().getTime()/1000;
-		console.log(userManager);
-		var frontid = userManager.getUser(uid);
+		console.log(userManager.getUser(389));
+		var frontid = userManager.getUser(Number(uid));
 		console.log(frontid);
 		channel.pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [{"uid":uid,"sid":frontid}], errHandler);
 		callback(res);
