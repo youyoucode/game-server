@@ -1,3 +1,5 @@
+var userManager = require('../../../manager/userManager');
+
 module.exports = function(app) {
 	return new Handler(app);
 };
@@ -163,7 +165,10 @@ handler.getQuestions = function(msg, session, next) {
 
 handler.askQuestion = function(msg, session, next) {
 	var uid = session.get('uid');
-	this.app.rpc.game.gameRemote.askQuestion(session,msg.teacherid,uid,msg.classname,msg.storyid,msg.code, function(insertid){
+	console.log(userManager.getUser(389));
+	var frontid = userManager.getUser(Number(uid));
+	console.log(frontid);
+	this.app.rpc.game.gameRemote.askQuestion(session,msg.teacherid,uid,msg.classname,msg.storyid,msg.code,frontid, function(insertid){
 		if(!insertid){
 			next(null, {
 				code: 500

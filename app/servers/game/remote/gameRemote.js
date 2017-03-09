@@ -5,7 +5,6 @@ var questionDao = require('../../../dao/questionDao');
 var async = require('async');
 var configUtil = require('../../../util/configUtil');
 var gameUtil = require('../../../util/gameUtil');
-var userManager = require('../../../manager/userManager');
 
 module.exports = function(app) {
 	return new GameRemote(app);
@@ -45,11 +44,8 @@ function errHandler(err, fails){
 	}
 }
 
-GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code,callback) {
+GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code,frontid,callback) {
 	var channel = this.app.get('channelService');
-	console.log(userManager.getUser(389));
-	var frontid = userManager.getUser(Number(uid));
-	console.log(frontid);
 	questionDao.askQuestion(uid,studentid,classname,storyid,code,function(err, res) {
 		//tell teacher uid
 		var time = new Date().getTime()/1000;	
