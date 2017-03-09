@@ -224,7 +224,8 @@ handler.readReply = function(msg, session, next) {
 		}
 		next(null, {
 			code: 200,
-			readed: insertid
+			readed: insertid,
+			id:msg.id
 		});
 	});
 };
