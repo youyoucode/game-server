@@ -26,6 +26,8 @@ Handler.prototype.enter = function(msg, session, next) {
 	}
 	session.bind(uid);
 	session.set('uid', uid);
+	console.log(session);
+	console.log(session.frontedId);
 	userManager.saveUser(uid,session.frontedId);
 	session.push('uid', function(err) {
 		if(err) {
