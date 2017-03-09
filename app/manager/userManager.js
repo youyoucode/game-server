@@ -1,5 +1,9 @@
 var userSessions = {};
 
+module.exports.init = function() {
+    userSessions = {};
+};
+
 module.exports.saveUser = function(uid,frontid) {
     userSessions[uid] = frontid;
 };
