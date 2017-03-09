@@ -46,11 +46,12 @@ function errHandler(err, fails){
 }
 
 GameRemote.prototype.askQuestion = function(uid,studentid,classname,storyid,code,callback) {
+	var channel = this.app.get('channelService');
 	questionDao.askQuestion(uid,studentid,classname,storyid,code,function(err, res) {
 		//tell teacher uid
 		var time = new Date().getTime()/1000;
 		var frontid = userManager.getUser(uid);
-		this.app.get('channelService').pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [{"uid":uid,"sid":frontid}], errHandler);
+		channel.pushMessageByUids("game.gameHandler.pushQuestion", {"id":res.insertid,"uid":uid,"studentid":studentid,"storyid":storyid,"code":code,"readed":0,"createTime":time}, [{"uid":uid,"sid":frontid}], errHandler);
 		callback(res);
 	});
 }
