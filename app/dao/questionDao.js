@@ -57,3 +57,12 @@ questionDao.replyQuestion = function(uid,studentid,storyid,id,code,cb){
 		}
 	});
 }
+
+questionDao.readReply = function(uid,id,cb){
+	var sql = 'update user_reply_' + uid%10 +' set readed = 1 where id = ?';
+	var args = [id];
+	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+		if (err) utils.invokeCallback(cb, err, null);
+		else utils.invokeCallback(cb, err, 1);
+	});
+}

@@ -212,3 +212,19 @@ handler.replyQuestion = function(msg, session, next) {
 		});
 	});
 };
+
+handler.readReply = function(msg, session, next) {
+	var uid = session.get('uid');
+	this.app.rpc.game.gameRemote.readReply(session,uid,msg.id, function(insertid){
+		if(!insertid){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			readed: insertid
+		});
+	});
+};

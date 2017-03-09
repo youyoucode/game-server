@@ -67,6 +67,12 @@ GameRemote.prototype.replyQuestion = function(uid,stuid,storyid,id,code,frontid,
 	});
 }
 
+GameRemote.prototype.readReply = function(uid,id,callback) {
+	questionDao.readReply(uid,id,function(err, insertid) {
+		callback(insertid);
+	});
+}
+
 GameRemote.prototype.playStory = function(uid,id,star,callback) {
 	var updateInfo = {};
 	var userInfo;
