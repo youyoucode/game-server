@@ -149,10 +149,11 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				{
 					mids.push(updateInfo['items'][i]['id']);
 					functions.push(function(callback){
+						var time = new Date().getTime()/1000;
 						var mid = mids[seat];
 						seat = seat + 1;
-						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid) values(?,?)';
-						var itemargs = [uid,mid];
+						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid,createTime) values(?,?,?)';
+						var itemargs = [uid,mid,time];
 						pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
 							info.items.push({"id":res.insertId,"uid":uid,"mid":mid});
 							callback(err);
