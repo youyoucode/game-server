@@ -38,6 +38,13 @@ LoginRemote.prototype.login = function(uid,callback) {
 	});
 };
 
+LoginRemote.prototype.getUserId = function(id,callback) {
+	accountDao.getAccountInfo(0,id,function(err, info) {
+		if(err) cb(err,null);
+		else cb(err,info.id);
+	});
+};	
+
 LoginRemote.prototype.refresh = function(uid,callback) {
 	var userinfo;
 	async.waterfall([
