@@ -9,7 +9,7 @@ var LoginRemote = function(app) {
 	this.app = app;
 };
 
-LoginRemote.prototype.login = function(uid,callback) {
+LoginRemote.prototype.login = function(uid,username,callback) {
 	var loginData;
 	async.waterfall([
 		function(cb) {
@@ -19,7 +19,7 @@ LoginRemote.prototype.login = function(uid,callback) {
 		},
 		function(info, cb) {
 			if(!info.userinfo){
-				userDao.createUser(uid,function(err, info) {
+				userDao.createUser(uid,username,function(err, info) {
 					loginData = info;
 					cb(err);
 				});
@@ -35,13 +35,6 @@ LoginRemote.prototype.login = function(uid,callback) {
 			return;
 		}
 		callback(loginData);
-	});
-};
-
-LoginRemote.prototype.getUserId = function(id,callback) {
-	accountDao.getAccountInfo(0,id,function(err, info) {
-		if(err) cb(err,null);
-		else cb(err,info.id);
 	});
 };	
 

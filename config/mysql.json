@@ -1,9 +1,9 @@
 {
 	"development": {
-	  "host" : "192.168.1.220",
+	  "host" : "localhost",
 		"port" : "3306",
 		"database" : "mali_code_s0",
-		"user" : "root",
+		"user" : "mali",
 		"password" : "mali"
 	},
 

@@ -53,12 +53,13 @@ storyDao.updateStoryInfo = function(uid,id,star,cb){
 		if(err){
 			utils.invokeCallback(cb, err, -1);
 		}else{
-			if (!!res) {
+			if(res) {
 				if(res.star<star){
-					sql = 'update user_story_' + uid%10 +' set storyID = ?,star = ? where uid = ?';
-					args = [id,star,uid];
+					sql = 'update user_story_' + uid%10 +' set star = ? where uid = ? and storyID = ?';
+					args = [star,uid,id];
+					var oldStar = res.star;
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-						utils.invokeCallback(cb, err, res.star);
+						utils.invokeCallback(cb, err, oldStar);
 					});
 				}else utils.invokeCallback(cb, err, -1);
 			}else{

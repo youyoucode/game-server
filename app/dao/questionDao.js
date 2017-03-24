@@ -49,9 +49,10 @@ questionDao.getReplys = function(uid,cb){
 }
 
 questionDao.replyQuestion = function(uid,studentid,storyid,id,code,cb){
-	var sql = 'update user_question_' + uid%10 +' set readed = 1 where id = ?';
-	var args = [id];
+	var sql = 'update user_question_' + uid%10 +' set readed = ? where id = ?';
+	var args = [1,id];
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+		console.log(err);
 		if (err) utils.invokeCallback(cb, err, null);
 		else
 		{
@@ -59,6 +60,7 @@ questionDao.replyQuestion = function(uid,studentid,storyid,id,code,cb){
 			sql = 'insert into user_reply_' + studentid%10 +' (uid, storyid, code,createTime) values(?,?,?,?)';
 			args = [studentid,storyid,code,time];
 			pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+				console.log(err);
 				if (err) {
 					utils.invokeCallback(cb, err, null);
 				} else utils.invokeCallback(cb, err, res.insertId);

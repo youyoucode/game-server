@@ -12,18 +12,11 @@ var accountDao = module.exports;
 accountDao.getAccountInfo = function (account,pid, cb) {
 	var sql = 'select * from system_user_info where account = ?';
 	var args = [account];
-	if(pid.length>0)
-	{
-		sql = 'select * from system_user_info where pid = ?';
-		args = [pid];
-	}
 	pomelo.app.get('dbclient').queryOne(sql,args,function(err, res) {
 		if(err){
 			utils.invokeCallback(cb, err, null);
 		}else{
-			if (!!res) {
-				utils.invokeCallback(cb, err, res);
-			}else utils.invokeCallback(cb, err, null);
+			utils.invokeCallback(cb, err, res);
 		}
 	});
 };

@@ -5,7 +5,7 @@
     "dependencies":{
         "generic-pool": "2.0.0"
       , "async": ">=0.0.1"
-      , "mysql": "2.12.0"
+      , "mysql": "latest"
 	    , "pomelo": "1.2.3"
 	    , "express": "2.5.2"
   	  , "connect": ">=0.0.1"

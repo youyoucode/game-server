@@ -229,3 +229,33 @@ handler.readReply = function(msg, session, next) {
 		});
 	});
 };
+
+handler.getUserId = function(msg, session, next) {
+	this.app.rpc.game.gameRemote.getUserId(session,msg.pid, function(data){
+		if(!data){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			userId: data
+		})});
+};
+
+handler.getUserInfo = function(msg, session, next) {
+	this.app.rpc.game.loginRemote.login(session,msg.id,"", function(data){
+		if(!data){
+			next(null, {
+				code: 500
+			});
+			return;
+		}
+		next(null, {
+			code: 200,
+			user: data.userinfo,
+			heros: data.heros,
+			equips:data.equips
+		})});
+};

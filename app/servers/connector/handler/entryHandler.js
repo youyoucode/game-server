@@ -34,7 +34,7 @@ Handler.prototype.enter = function(msg, session, next) {
 	});
 	session.on('closed', onUserLeave.bind(null, this.app));
 	
-	this.app.rpc.game.loginRemote.login(session,uid, function(data){
+	this.app.rpc.game.loginRemote.login(session,uid,msg.name, function(data){
 		if(!data){
 			next(null, {
 				code: 500

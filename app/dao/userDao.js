@@ -43,7 +43,7 @@ userDao.getUserInfo = function (uid, cb) {
 	});
 };
 
-userDao.createUser = function (uid, cb) {
+userDao.createUser = function (uid,username,cb) {
 	var time = new Date().getTime()/1000;
 	var connection = pomelo.app.get('dbclient');
 	var originalData = {"boy":30001,"hero":30000,"icon":1001,"story":110001,"item":14000};
@@ -68,7 +68,7 @@ userDao.createUser = function (uid, cb) {
 			},
 			function(callback){
 				sql = 'insert into user_info_' + uid%10 +' (id, name, mid, hid, storyID, updateTime) values(?,?,?,?,?,?)';
-				args = [uid,"newPlayer",originalData.icon,heroid,originalData.story,time];
+				args = [uid,username,originalData.icon,heroid,originalData.story,time];
 				connection.query(sql,args,function(err, res) {
 					callback(err);
 				});
@@ -124,6 +124,17 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 		sql = sql + ",storyID = ?"
 		args.push(updateInfo['storyID']);
 		info.storyID = updateInfo['storyID'];
+	}
+	if(updateInfo['hero']){
+		functions.push(function(callback){
+			var mid = updateInfo['hero'];
+			var itemsql = 'insert into user_hero_' + uid%10 +' (uid, mid) values(?,?)';
+			var itemargs = [uid,mid];
+			pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
+				info.heros.push({"id":res.insertId,"uid":uid,"mid":mid});
+				callback(err);
+			});
+		});
 	}
 	if(updateInfo['items']){
 		for (var i = 0;i<updateInfo['items'].length;i++){
