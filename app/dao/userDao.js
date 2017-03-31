@@ -120,21 +120,11 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 	var functions = [];
 	var seat = 0;
 	var mids = [];
+	var hmid = 0;
 	if(updateInfo['storyID']){
 		sql = sql + ",storyID = ?"
 		args.push(updateInfo['storyID']);
 		info.storyID = updateInfo['storyID'];
-	}
-	if(updateInfo['hero']){
-		functions.push(function(callback){
-			var mid = updateInfo['hero'];
-			var itemsql = 'insert into user_hero_' + uid%10 +' (uid, mid) values(?,?)';
-			var itemargs = [uid,mid];
-			pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
-				info.heros.push({"id":res.insertId,"uid":uid,"mid":mid});
-				callback(err);
-			});
-		});
 	}
 	if(updateInfo['items']){
 		for (var i = 0;i<updateInfo['items'].length;i++){
@@ -158,18 +148,30 @@ userDao.updateInfo = function (uid,updateInfo, cb) {
 				seat = 0;
 				for (var j=0;j<updateInfo['items'][i]['number']+0;j++)
 				{
-					mids.push(updateInfo['items'][i]['id']);
-					functions.push(function(callback){
-						var time = new Date().getTime()/1000;
-						var mid = mids[seat];
-						seat = seat + 1;
-						var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid,createTime) values(?,?,?)';
-						var itemargs = [uid,mid,time];
-						pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
-							info.items.push({"id":res.insertId,"uid":uid,"mid":mid});
-							callback(err);
+					if(updateInfo['items'][i]['id']>=30000 && updateInfo['items'][i]['id']<40000){
+						hmid = updateInfo['items'][i]['id'];
+						functions.push(function(callback){
+							var itemsql = 'insert into user_hero_' + uid%10 +' (uid, mid) values(?,?)';
+							var itemargs = [uid,hmid];
+							pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
+								info.items.push({"id":res.insertId,"uid":uid,"mid":hmid});
+								callback(err);
+							});
 						});
-					});
+					}else{
+						mids.push(updateInfo['items'][i]['id']);
+						functions.push(function(callback){
+							var time = new Date().getTime()/1000;
+							var mid = mids[seat];
+							seat = seat + 1;
+							var itemsql = 'insert into user_item_' + uid%10 +' (uid, mid,createTime) values(?,?,?)';
+							var itemargs = [uid,mid,time];
+							pomelo.app.get('dbclient').query(itemsql,itemargs,function(err, res) {
+								info.items.push({"id":res.insertId,"uid":uid,"mid":mid});
+								callback(err);
+							});
+						});
+					}
 				}
 			}
 		}

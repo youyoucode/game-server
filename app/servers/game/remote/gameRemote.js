@@ -97,14 +97,12 @@ GameRemote.prototype.playStory = function(uid,id,star,callback) {
 			if(id-info.storyID>=0){
 				updateInfo.storyID = Number(storyCFG.unlock_level);
 			}
-			updateInfo.hero = Number(storyCFG.hero_reward);
 			storyDao.updateStoryInfo(uid,id,star,function(err,drop) {
 				if(drop>=0){
 					updateInfo.items = [];
 					for (var j = drop+1;j<=star;j++){
 						var items = storyCFG['star'+j+"_reward"].split("|");
 						var numbers = storyCFG['star'+j+"_reward_num"].split("|");
-						console.log(items);
 						for (var i = 0;i<items.length;i++){
 							updateInfo.items.push({"id":Number(items[i]),"number":Number(numbers[i])});
 						}
