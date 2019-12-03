@@ -6,7 +6,7 @@
         "generic-pool": "2.0.0"
       , "async": ">=0.0.1"
       , "mysql": "latest"
-	    , "pomelo": "1.2.3"
+	    , "pomelo": "2.2.7"
 	    , "express": "2.5.2"
   	  , "connect": ">=0.0.1"
       , "node-csv":"latest"
